@@ -3,16 +3,20 @@ cmake_minimum_required(VERSION 3.1)
 # set the project name and version
 project(QSsh VERSION 1.0)
 
+if(MSVC)
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-if(MSVC)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4005")
 set(BOTAN_LIB ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/lib/botan.lib)
 else(MSVC)
-set(BOTAN_LIB "-lbotan")
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 14)
+include_directories("/usr/local/include/botan-2")
+set(BOTAN_LIB "-lbotan-2")
 endif(MSVC)
+
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
 
 find_package(Qt5 COMPONENTS Core Widgets Network  REQUIRED)
 
