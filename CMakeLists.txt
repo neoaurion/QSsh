@@ -12,6 +12,7 @@ else(MSVC)
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 14)
 include_directories("/usr/local/include/botan-2")
+include_directories("/usr/include/botan-2")
 set(BOTAN_LIB "-lbotan-2")
 endif(MSVC)
 
